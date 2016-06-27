@@ -202,6 +202,9 @@ func copyTree(dstRoot, dstDir, srcDir string) error {
 		if skipFiles[n] {
 			continue
 		}
+		if strings.Contains(n, "~") {
+			continue
+		}
 		s := filepath.Join(srcDir, n)
 		if entry.Mode()&os.ModeSymlink == os.ModeSymlink {
 			if entry, err = os.Stat(s); err != nil {
